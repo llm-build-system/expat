@@ -1,0 +1,25 @@
+type = "static-library"
+name = "expat"
+standards = ["C11"]
+excludes = ["src/xmltok_impl.c", "src/xmltok_ns.c"]
+
+[includes]
+private = ["config"]
+
+[defines]
+public = ["XML_STATIC"]
+
+[windows]
+excludes = ["platform/random_getrandom.c", "platform/random_arc4random_buf.c"]
+
+[linux]
+excludes = ["platform/random_rand_s.c", "platform/random_arc4random_buf.c"]
+
+[linux.defines]
+private = ["_GNU_SOURCE"]
+
+[macos]
+excludes = ["platform/random_rand_s.c", "platform/random_getrandom.c"]
+
+[macos.defines]
+private = ["_DARWIN_C_SOURCE"]
